@@ -26,10 +26,10 @@ class Tokenizer:
         logger.info(f"Reloaded SentencePiece model from {model_path}")
 
         # BOS / EOS token IDs
-        self.n_words: int = self.sp_model.vocab_size()
-        self.bos_id: int = self.sp_model.bos_id()
-        self.eos_id: int = self.sp_model.eos_id()
-        self.pad_id: int = self.sp_model.pad_id()
+        self.n_words: int = self.sp_model.vocab_size() # 32000 语料库的size
+        self.bos_id: int = self.sp_model.bos_id() # 1 开始符id 用于表示一个序列的开始。
+        self.eos_id: int = self.sp_model.eos_id() # 2 结束符id 用于表示一个序列的结束。
+        self.pad_id: int = self.sp_model.pad_id() # -1 填充符(Padding)的id 当需要将多个序列长度对齐时,可以使用pad_id在较短序列后面填充。
         logger.info(
             f"#words: {self.n_words} - BOS ID: {self.bos_id} - EOS ID: {self.eos_id}"
         )
